@@ -25,10 +25,11 @@ public class TaskRepository {
      * - 同じ id のタスクが複数保存され得る
      */
     public Task saveTask(String id, String title, String note) {
-        // ❌ 意図的: title が null でも通ってしまい、呼び出し側で落ちる可能性
-        // ❌ 意図的: validation が弱い
+        if (title == null || title.isBlank()) {
+                throw new IllegalArgumentException("title must not be blank");
+        }
         Instant now = Instant.now();
-        Task task = new Task(id, title.trim(), note, now, false); // <- nullならNPE
+        Task task = new Task(id, title.trim(), note, now, false);
         tasks.add(task);
         return task;
     }
