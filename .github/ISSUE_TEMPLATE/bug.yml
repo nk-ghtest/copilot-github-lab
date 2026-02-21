@@ -1,0 +1,38 @@
+name: Bug report
+description: バグ報告テンプレ（Copilot @github 検証用）
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 何が起きた？
+      description: 期待した挙動と実際の挙動を簡潔に
+      placeholder: "例: タスク追加でクラッシュする"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現手順
+      description: 手順を箇条書きで
+      placeholder: |
+        1. アプリ起動
+        2. 追加ボタン
+        3. タイトル未入力
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: 環境
+      placeholder: "例: Android 14 / Pixel 7 / アプリ v1.0"
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: 補足
+      placeholder: "スタックトレースやログがあれば貼る"
+    validations:
+      required: false

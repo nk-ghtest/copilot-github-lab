@@ -1,0 +1,21 @@
+name: Feature request
+description: 機能要望テンプレ（Copilot @github 検証用）
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: 目的
+      placeholder: "例: タスクのタイトルを必須にして、空白は拒否したい"
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 受け入れ条件
+      placeholder: |
+        - タイトルがnull/空/空白だけならエラー
+        - 既存APIの互換性を保つ
+    validations:
+      required: true
