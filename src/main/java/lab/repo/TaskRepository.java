@@ -1,5 +1,6 @@
 package lab.repo;
 
+import lab.exception.InvalidTaskException;
 import lab.model.Task;
 
 import java.time.Instant;
@@ -26,7 +27,7 @@ public class TaskRepository {
      */
     public Task saveTask(String id, String title, String note) {
         if (title == null || title.isBlank()) {
-                throw new IllegalArgumentException("title must not be blank");
+                throw new InvalidTaskException("title must not be blank");
         }
         Instant now = Instant.now();
         Task task = new Task(id, title.trim(), note, now, false);
