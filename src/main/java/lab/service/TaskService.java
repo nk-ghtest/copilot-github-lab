@@ -15,7 +15,6 @@ public class TaskService {
 
     public Task createTask(String title, String note) {
         String id = UUID.randomUUID().toString();
-        // 呼び出し元が title を null で渡すと、repo内で落ちる（意図的欠陥の伝播）
         return repo.saveTask(id, title, note);
     }
 
