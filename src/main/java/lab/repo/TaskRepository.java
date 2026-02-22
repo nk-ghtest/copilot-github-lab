@@ -17,16 +17,18 @@ public class TaskRepository {
     private final List<Task> tasks = new ArrayList<>();
 
     /**
-     * @return 追加されたTask
-     *
-     * 既知の問題（意図的）:
-     * - title が null のときに NPE を起こしやすい（呼び出し元に依存）
-     * - 空文字や空白だけのtitleを許してしまう
-     * - 同じ id のタスクが複数保存され得る
+     * @param id    task identifier (must not be null)
+     * @param title task title (must not be null or blank)
+     * @param note  optional note
+     * @return the saved Task
+     * @throws IllegalArgumentException if id or title is null/blank
      */
     public Task saveTask(String id, String title, String note) {
+        if (id == null || id.isBlank()) {
+            throw new IllegalArgumentException("id must not be null or blank");
+        }
         if (title == null || title.isBlank()) {
-                throw new IllegalArgumentException("title must not be blank");
+            throw new IllegalArgumentException("title must not be null or blank");
         }
         Instant now = Instant.now();
         Task task = new Task(id, title.trim(), note, now, false);
