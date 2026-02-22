@@ -15,8 +15,13 @@ public class TaskController {
         this.service = service;
     }
 
+    /**
+     * @return the created Task, or {@code null} if titleFromUi is null/blank
+     */
     public Task onAddClicked(String titleFromUi, String noteFromUi) {
-        // ❌ UIから title が null/空のまま来ることを想定したガードが薄い（レビュー対象）
+        if (titleFromUi == null || titleFromUi.isBlank()) {
+            return null;
+        }
         return service.createTask(titleFromUi, noteFromUi);
     }
 

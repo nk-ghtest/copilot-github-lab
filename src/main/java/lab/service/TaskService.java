@@ -13,9 +13,17 @@ public class TaskService {
         this.repo = repo;
     }
 
+    /**
+     * @param title task title (must not be null or blank)
+     * @param note  optional note
+     * @return the created Task
+     * @throws IllegalArgumentException if title is null or blank
+     */
     public Task createTask(String title, String note) {
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException("title must not be null or blank");
+        }
         String id = UUID.randomUUID().toString();
-        // 呼び出し元が title を null で渡すと、repo内で落ちる（意図的欠陥の伝播）
         return repo.saveTask(id, title, note);
     }
 
