@@ -1,5 +1,6 @@
 package lab.web;
 
+import lab.exception.InvalidTaskException;
 import lab.model.Task;
 import lab.service.TaskService;
 
@@ -16,7 +17,9 @@ public class TaskController {
     }
 
     public Task onAddClicked(String titleFromUi, String noteFromUi) {
-        // ❌ UIから title が null/空のまま来ることを想定したガードが薄い（レビュー対象）
+        if (titleFromUi == null || titleFromUi.isBlank()) {
+            throw new InvalidTaskException("title must not be blank");
+        }
         return service.createTask(titleFromUi, noteFromUi);
     }
 
